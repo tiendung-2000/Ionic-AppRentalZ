@@ -1,5 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 
@@ -21,18 +21,40 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Detail from './pages/Detail';
+import Add from './pages/Add';
+import List from './pages/List';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
+      <IonTabs>
+
+        <IonRouterOutlet>
+          <Route path="/" component={Home} exact />
+          <Route path="/home" component={Home} exact />
+          <Route path="/AddRent" component={Add} exact />
+          <Route path="/ListRoom" component={List} exact />
+          <Route path="/RoomDetail/:id" component={Detail} exact />
+        </IonRouterOutlet>
+
+        <IonTabBar color="primary" slot="bottom">
+
+          <IonTabButton href="/AddRent" tab="AddRent">
+            <IonLabel class="text1" >Add Room</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton href="/home" tab="home">
+            <IonLabel class="text1">Home</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton href="/ListRoom" tab="ListRoom">
+            <IonLabel class="text1">List Room</IonLabel>
+          </IonTabButton>
+
+        </IonTabBar>
+        
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
