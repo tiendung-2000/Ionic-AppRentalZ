@@ -18,6 +18,7 @@ interface IdParam {
 }
 
 const RoomDetail: React.FC = () => {
+  const [titleRoom, setTitleRoom] = useState('');
   const [propertyType, setProperty] = useState('')
   const [bedRooms, setBedRooms] = useState('')
   const [dateAndTime, setDateAndTime] = useState(new Date().toISOString())
@@ -45,6 +46,7 @@ const RoomDetail: React.FC = () => {
       //construct object to insert
       const udtRoom = {
         id: Number.parseInt(id),
+        titleRoom: titleRoom,
         propertyType: propertyType,
         bedRooms: bedRooms,
         dateAndTime: dateAndTime,
@@ -72,6 +74,7 @@ const RoomDetail: React.FC = () => {
 
   async function fetchData() {
     const resultFromDB = await getRoomById(Number.parseInt(id)) as RoomRental;
+    
     setProperty(resultFromDB.propertyType);
     setBedRooms(resultFromDB.bedRooms);
     setDateAndTime(resultFromDB.dateAndTime)
@@ -81,6 +84,7 @@ const RoomDetail: React.FC = () => {
     setName(resultFromDB.name);
     setPictureURL(URL.createObjectURL(resultFromDB.pictureBlob));
     setComment(resultFromDB.comment);
+    setTitleRoom(resultFromDB.titleRoom);
   }
 
   async function roomDelete() {
@@ -110,7 +114,12 @@ const RoomDetail: React.FC = () => {
           Detail
         </IonHeader>
 
-
+        <IonItem lines="none">
+          <IonText class="text">Title: </IonText>
+        </IonItem>
+        <IonItem lines="none">
+          <IonInput class="ipt1" value={titleRoom} onIonChange={e => setTitleRoom(e.detail.value!)}></IonInput>
+        </IonItem>
 
         <IonItem lines="none">
           <IonText class="text">Property Type: </IonText>

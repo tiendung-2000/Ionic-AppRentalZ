@@ -10,6 +10,7 @@ import {
 } from "@capacitor/camera";
 
 const AddRent: React.FC = () => {
+  
   const [propertyType, setProperty] = useState('');
   const [bedRooms, setBedRooms] = useState('');
   const [dateAndTime, setDateAndTime] = useState(new Date().toLocaleString("vi-VN"));
@@ -19,6 +20,7 @@ const AddRent: React.FC = () => {
   const [name, setName] = useState('');
   const [pictureURL, setPictureURL] = useState('assets/placeholder350x200.png');
   const [comment, setComment] = useState('');
+  const [titleRoom, setTitleRoom] = useState('');
 
   const formatVNDate = (iosString: string) => {
     return new Date(iosString).toLocaleString("vi-VN");
@@ -46,6 +48,7 @@ const AddRent: React.FC = () => {
       const fileContent = await response.blob()
       //construct object to insert
       const newCus = {
+        titleRoom: titleRoom,
         propertyType: propertyType,
         bedRooms: bedRooms,
         dateAndTime: dateAndTime,
@@ -74,6 +77,13 @@ const AddRent: React.FC = () => {
         <IonHeader class="text-header" >
           Add Room
         </IonHeader>
+
+        <IonItem lines="none">
+          <IonText class="text">Title: </IonText>
+        </IonItem>
+        <IonItem lines="none">
+          <IonInput class="ipt1" placeholder="Selling Room Very Cheap." onIonChange={e => setTitleRoom(e.detail.value!)}></IonInput>
+        </IonItem>
 
         <IonItem lines="none">
           <IonText class="text">Property Type: </IonText>
@@ -122,7 +132,7 @@ const AddRent: React.FC = () => {
           <IonText class="text">Name: </IonText>
         </IonItem>
         <IonItem lines="none">
-          <IonInput class="ipt1" placeholder="Write your name." onIonChange={e => setName(e.detail.value!)}></IonInput>
+          <IonInput class="ipt1" placeholder="Ngo Tien Dung" onIonChange={e => setName(e.detail.value!)}></IonInput>
         </IonItem>
 
         <IonItem lines="none">

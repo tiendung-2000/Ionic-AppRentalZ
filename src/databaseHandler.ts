@@ -34,6 +34,7 @@ export async function updateRoom(roomRental: RoomRental) {
     roomDB.name = roomRental.name
     roomDB.pictureBlob = roomRental.pictureBlob
     roomDB.comment= roomRental.comment
+    roomDB.titleRoom= roomRental.titleRoom
 
     await db.put("RentalZ", roomDB);
 }

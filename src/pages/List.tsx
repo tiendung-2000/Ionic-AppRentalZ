@@ -57,7 +57,7 @@ const ListRoom: React.FC = () => {
                                 <img src={URL.createObjectURL(c.pictureBlob)} width="385" height="200" />
                                 <IonCardHeader>
                                     <IonCardTitle>
-                                        {c.name}
+                                        {c.titleRoom}
                                     </IonCardTitle>
                                     <IonCardSubtitle>
                                         {c.dateAndTime}
