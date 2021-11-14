@@ -10,7 +10,7 @@ import {
 } from "@capacitor/camera";
 
 const AddRent: React.FC = () => {
-  
+
   const [propertyType, setProperty] = useState('');
   const [bedRooms, setBedRooms] = useState('');
   const [dateAndTime, setDateAndTime] = useState(new Date().toLocaleString("vi-VN"));
@@ -36,7 +36,7 @@ const AddRent: React.FC = () => {
   }
 
   async function validation() {
-    if (propertyType.length === 0 || bedRooms.length === 0 || monthlyRentPrice.length === 0) {
+    if (propertyType.length === 0 || bedRooms.length === 0 || monthlyRentPrice.length === 0 || titleRoom.length === 0) {
       toast("Is not Empty!")
     }
     else if (isNaN(parseInt(monthlyRentPrice)) || parseInt(monthlyRentPrice) <= 0) {
@@ -144,6 +144,7 @@ const AddRent: React.FC = () => {
         <IonItem lines="none">
           <IonButton onClick={takePicture}>Select Picture</IonButton>
         </IonItem>
+
         <IonItem lines="none">
           <IonButton class="btn-submit" onClick={validation}>SUBMIT</IonButton>
         </IonItem>

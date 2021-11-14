@@ -1,6 +1,5 @@
 export interface RoomRental {
     id?: number;
-    
     propertyType: string;
     bedRooms: string;
     dateAndTime: string;
